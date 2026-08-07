@@ -1,0 +1,1002 @@
+[
+  {
+    "id": 1,
+    "name": "Shoe 01 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-01-1786122608267-5382.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.275Z"
+  },
+  {
+    "id": 2,
+    "name": "Shoe 02 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-02-1786122608279-5782.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.285Z"
+  },
+  {
+    "id": 3,
+    "name": "Shoe 03 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-03-1786122608287-3482.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.293Z"
+  },
+  {
+    "id": 4,
+    "name": "Shoe 04 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-04-1786122608295-9679.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.302Z"
+  },
+  {
+    "id": 5,
+    "name": "Shoe 05 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-05-1786122608303-5537.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.309Z"
+  },
+  {
+    "id": 6,
+    "name": "Shoe 06 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-06-1786122608311-3706.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.317Z"
+  },
+  {
+    "id": 7,
+    "name": "Shoe 07 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-07-1786122608319-4245.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.326Z"
+  },
+  {
+    "id": 8,
+    "name": "Shoe 08 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-08-1786122608327-3524.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.334Z"
+  },
+  {
+    "id": 9,
+    "name": "Shoe 09 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-09-1786122608336-9123.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.342Z"
+  },
+  {
+    "id": 10,
+    "name": "Shoe 10 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-10-1786122608344-3830.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.350Z"
+  },
+  {
+    "id": 11,
+    "name": "Shoe 11 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-11-1786122608351-9239.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.358Z"
+  },
+  {
+    "id": 12,
+    "name": "Shoe 12 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-12-1786122608360-4048.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.366Z"
+  },
+  {
+    "id": 13,
+    "name": "Shoe 13 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-13-1786122608368-1513.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.374Z"
+  },
+  {
+    "id": 14,
+    "name": "Shoe 14 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-14-1786122608376-8475.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.382Z"
+  },
+  {
+    "id": 15,
+    "name": "Shoe 15 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-15-1786122608384-4115.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.390Z"
+  },
+  {
+    "id": 16,
+    "name": "Shoe 16 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-16-1786122608392-6153.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.398Z"
+  },
+  {
+    "id": 17,
+    "name": "Shoe 17 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-17-1786122608400-6785.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.406Z"
+  },
+  {
+    "id": 18,
+    "name": "Shoe 18 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-18-1786122608408-6553.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.414Z"
+  },
+  {
+    "id": 19,
+    "name": "Shoe 19 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-19-1786122608416-2639.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.422Z"
+  },
+  {
+    "id": 20,
+    "name": "Shoe 20 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-20-1786122608424-3391.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.430Z"
+  },
+  {
+    "id": 21,
+    "name": "Shoe 21 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-21-1786122608432-6591.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.438Z"
+  },
+  {
+    "id": 22,
+    "name": "Shoe 22 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-22-1786122608440-9701.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.446Z"
+  },
+  {
+    "id": 23,
+    "name": "Shoe 23 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-23-1786122608447-7676.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.453Z"
+  },
+  {
+    "id": 24,
+    "name": "Shoe 24 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-24-1786122608455-6548.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.461Z"
+  },
+  {
+    "id": 25,
+    "name": "Shoe 25 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-25-1786122608462-7453.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.468Z"
+  },
+  {
+    "id": 26,
+    "name": "Shoe 26 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-26-1786122608470-3904.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.476Z"
+  },
+  {
+    "id": 27,
+    "name": "Shoe 27 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-27-1786122608478-1759.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.484Z"
+  },
+  {
+    "id": 28,
+    "name": "Shoe 28 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-28-1786122608486-1202.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.493Z"
+  },
+  {
+    "id": 29,
+    "name": "Shoe 29 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-29-1786122608495-5775.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.501Z"
+  },
+  {
+    "id": 30,
+    "name": "Shoe 30 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-30-1786122608503-4307.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.509Z"
+  },
+  {
+    "id": 31,
+    "name": "Shoe 31 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-31-1786122608510-8980.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.517Z"
+  },
+  {
+    "id": 32,
+    "name": "Shoe 32 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-32-1786122608518-5664.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.524Z"
+  },
+  {
+    "id": 33,
+    "name": "Shoe 33 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-33-1786122608526-6095.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.532Z"
+  },
+  {
+    "id": 34,
+    "name": "Shoe 34 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-34-1786122608534-6123.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.540Z"
+  },
+  {
+    "id": 35,
+    "name": "Shoe 35 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-35-1786122608542-8208.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.548Z"
+  },
+  {
+    "id": 36,
+    "name": "Shoe 36 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-36-1786122608550-9344.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.557Z"
+  },
+  {
+    "id": 37,
+    "name": "Shoe 37 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-37-1786122608558-2004.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.565Z"
+  },
+  {
+    "id": 38,
+    "name": "Shoe 38 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-38-1786122608567-2007.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.573Z"
+  },
+  {
+    "id": 39,
+    "name": "Shoe 39 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-39-1786122608575-5537.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.581Z"
+  },
+  {
+    "id": 40,
+    "name": "Shoe 40 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-40-1786122608583-2973.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.589Z"
+  },
+  {
+    "id": 41,
+    "name": "Shoe 41 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-41-1786122608591-8749.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.598Z"
+  },
+  {
+    "id": 42,
+    "name": "Shoe 42 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-42-1786122608600-9615.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.608Z"
+  },
+  {
+    "id": 43,
+    "name": "Shoe 43 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-43-1786122608610-8113.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.618Z"
+  },
+  {
+    "id": 44,
+    "name": "Shoe 44 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-44-1786122608622-3785.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.629Z"
+  },
+  {
+    "id": 45,
+    "name": "Shoe 45 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-45-1786122608630-5723.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.637Z"
+  },
+  {
+    "id": 46,
+    "name": "Shoe 46 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-46-1786122608638-5328.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.645Z"
+  },
+  {
+    "id": 47,
+    "name": "Shoe 47 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-47-1786122608646-5995.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.652Z"
+  },
+  {
+    "id": 48,
+    "name": "Shoe 48 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-48-1786122608654-6855.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.660Z"
+  },
+  {
+    "id": 49,
+    "name": "Shoe 49 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-49-1786122608661-5293.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.668Z"
+  },
+  {
+    "id": 50,
+    "name": "Shoe 50 - Premium Collection",
+    "category": "Casual",
+    "price": 9999,
+    "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "image": "/images/shoe-50-1786122608670-7659.jpg",
+    "emoji": "👟",
+    "createdAt": "2026-08-07T17:10:08.676Z"
+  }
+]

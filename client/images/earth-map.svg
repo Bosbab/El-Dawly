@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="ocean" cx="35%" cy="30%" r="120%">
+      <stop offset="0%" stop-color="#1a6fb5"/>
+      <stop offset="40%" stop-color="#125a9e"/>
+      <stop offset="70%" stop-color="#0b4684"/>
+      <stop offset="90%" stop-color="#083a6b"/>
+      <stop offset="100%" stop-color="#062c54"/>
+    </radialGradient>
+    <radialGradient id="land" cx="40%" cy="35%" r="120%">
+      <stop offset="0%" stop-color="#5a9e3f"/>
+      <stop offset="55%" stop-color="#3f7a2e"/>
+      <stop offset="100%" stop-color="#2a5a1e"/>
+    </radialGradient>
+    <radialGradient id="sand" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#c9a55a"/>
+      <stop offset="100%" stop-color="#a8843c"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Ocean -->
+  <rect width="512" height="512" fill="url(#ocean)"/>
+
+  <!-- North America -->
+  <g fill="url(#land)">
+    <path d="M70 95 Q95 70 130 62 Q160 58 175 72 L190 90 Q205 105 205 125 L198 140 Q192 155 175 160 L160 150 Q150 140 140 150 L120 165 Q100 175 85 165 Q75 155 70 140 Q62 120 70 95 Z"/>
+    <path d="M70 95 Q50 120 55 150 Q60 175 80 190 Q100 200 120 190 Q135 180 130 165 Q120 155 110 148 Q95 135 90 120 Q82 105 70 95 Z"/>
+    <path d="M198 140 Q210 130 225 135 Q240 142 238 160 Q232 175 218 178 Q205 178 200 168 Q195 155 198 140 Z"/>
+    <!-- Central America -->
+    <path d="M120 190 Q135 185 150 190 Q165 200 168 215 Q170 230 160 242 Q150 250 138 248 Q128 242 124 228 Q120 210 120 190 Z"/>
+  </g>
+
+  <!-- South America -->
+  <g fill="url(#land)">
+    <path d="M150 250 Q170 245 190 255 Q205 268 200 290 Q192 315 175 330 Q160 340 150 330 Q140 318 138 300 Q138 280 142 262 Q145 252 150 250 Z"/>
+    <path d="M200 290 Q215 300 218 320 Q218 345 205 365 Q192 385 178 400 Q170 410 165 408 Q160 400 165 385 Q175 360 185 340 Q195 318 200 290 Z"/>
+  </g>
+
+  <!-- Europe -->
+  <g fill="url(#land)">
+    <path d="M250 90 Q270 80 295 82 Q315 86 322 100 Q328 115 320 128 Q310 140 295 140 Q280 138 272 128 Q262 115 250 90 Z"/>
+    <path d="M250 90 Q240 105 245 125 Q250 140 268 140 Q282 140 295 140 Q300 142 295 150 Q285 160 270 160 Q255 158 248 150 Q240 145 238 140 Q235 130 240 110 Q245 95 250 90 Z"/>
+  </g>
+
+  <!-- Africa -->
+  <g fill="url(#land)">
+    <path d="M270 145 Q300 135 330 145 Q355 158 360 185 Q362 215 350 245 Q335 280 315 305 Q295 320 285 322 Q275 315 280 295 Q290 270 295 245 Q297 215 288 190 Q280 165 270 145 Z"/>
+    <!-- Madagascar -->
+    <path d="M365 300 Q375 295 380 305 Q382 320 375 335 Q368 345 362 340 Q358 330 360 315 Q362 305 365 300 Z"/>
+  </g>
+
+  <!-- Asia -->
+  <g fill="url(#land)">
+    <path d="M330 90 Q370 70 410 80 Q445 90 455 115 Q462 140 450 160 Q435 180 415 185 Q395 188 385 180 Q375 168 380 150 Q385 130 375 118 Q360 105 340 100 Q330 96 330 90 Z"/>
+    <path d="M455 115 Q470 130 478 160 Q485 190 478 215 Q470 240 452 250 Q438 256 430 242 Q425 225 432 205 Q440 180 445 155 Q450 132 455 115 Z"/>
+    <!-- India -->
+    <path d="M385 185 Q400 180 415 190 Q425 205 420 225 Q410 245 395 248 Q382 245 378 230 Q375 210 385 185 Z"/>
+    <!-- Southeast Asia -->
+    <path d="M415 250 Q430 245 442 255 Q448 268 440 282 Q428 292 415 288 Q405 280 408 265 Q410 255 415 250 Z"/>
+    <!-- Japan -->
+    <path d="M462 150 Q470 160 468 178 Q462 195 452 198 Q446 190 450 172 Q455 158 462 150 Z"/>
+  </g>
+
+  <!-- Australia -->
+  <g fill="url(#land)">
+    <path d="M400 380 Q420 370 445 375 Q465 382 468 400 Q468 420 455 435 Q438 448 420 448 Q402 445 395 430 Q390 415 395 396 Q398 385 400 380 Z"/>
+  </g>
+
+  <!-- Sahara desert (Africa) -->
+  <ellipse cx="315" cy="180" rx="40" ry="22" fill="url(#sand)" opacity="0.85"/>
+  <!-- Arabian desert -->
+  <ellipse cx="432" cy="195" rx="22" ry="16" fill="url(#sand)" opacity="0.8"/>
+
+  <!-- Ice caps -->
+  <path d="M0 0 L512 0 L512 22 Q400 6 300 14 Q200 22 100 10 Q50 4 0 16 Z" fill="#eef7fb"/>
+  <path d="M0 490 L512 490 L512 512 L0 512 Z" fill="#eef7fb"/>
+</svg>
