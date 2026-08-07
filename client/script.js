@@ -6,18 +6,18 @@ const FEATURED_SHOE_IDS = [34, 38, 41];
 
 function getWhatsAppURL(product) {
     const text = encodeURIComponent(
-        `مرحباً EL Dawly 👋\n` +
-        `أود حجز / الاستفسار عن:\n` +
-        `\n` +
-        `👟 المنتج: ${product.name}\n` +
-        `🏷️ السعر: EGP ${product.price.toLocaleString()}\n` +
-        `📂 القسم: ${product.category}\n` +
-        `\n` +
-        `من فضلك أرسل لي تفاصيل أكثر وشكراً ✨\n` +
-        `\n` +
-        `— من موقع EL Dawly`
+        'مرحباً AL Dawly 👋\n' +
+        'أود حجز / الاستفسار عن:\n' +
+        '\n' +
+        '👟 المنتج: ' + product.name + '\n' +
+        '🏷️ السعر: EGP ' + product.price.toLocaleString() + '\n' +
+        '📂 القسم: ' + product.category + '\n' +
+        '\n' +
+        'من فضلك أرسل لي تفاصيل أكثر وشكراً ✨\n' +
+        '\n' +
+        '— من موقع AL Dawly'
     );
-    return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + text;
 }
 
 const API_BASE = '/api';
@@ -229,13 +229,13 @@ function renderHome(featuredProducts) {
     return `
         <section class="hero">
             <div class="hero-content">
-                <h1>EL Dawly <span>store</span></h1>
+                <h1>AL Dawly <span>store</span></h1>
 <div class="hero-earth-wrapper">
                     <div class="hero-earth-globe-container" id="heroGlobeContainer">
                         <canvas id="heroEarthGlobe" class="hero-earth-globe-canvas"></canvas>
                     </div>
                 </div>
-                <p>Crafted with Excellence. Worn with Distinction. Discover the EL Dawly heritage of premium shoemaking.</p>
+                <p>Crafted with Excellence. Worn with Distinction. Discover the AL Dawly heritage of premium shoemaking.</p>
                 <a href="#products" onclick="navigate('products')" class="btn btn-lg">Explore Collection →</a>
             </div>
         </section>
@@ -378,7 +378,7 @@ function renderProductsGrid(products) {
         `;
     }
 
-    return `
+return `
         <div class="products-grid">
             ${products.map(product => {
                 const spinClass = FEATURED_SHOE_IDS.includes(product.id) ? 'featured-spin' : '';
@@ -386,14 +386,20 @@ function renderProductsGrid(products) {
                 <div class="product-card ${spinClass}" onclick="viewProduct(${product.id})">
                     <div class="product-image ${spinClass ? 'spin-image-wrap' : ''}">
                         ${product.image 
-                            ? `<img src="${product.image}" alt="${product.name}" class="${spinClass ? 'spin-image' : ''}">`
+                            ? `<img src="${product.image}" alt="${product.name}" loading="lazy" class="${spinClass ? 'spin-image' : ''}">`
                             : product.emoji || '👟'
                         }
+                        ${product.stock === 0 ? `<span class="product-badge sold-out">Sold Out</span>` : (FEATURED_SHOE_IDS.includes(product.id) ? `<span class="product-badge featured">Featured</span>` : '')}
                     </div>
                     <div class="product-info">
                         <span class="product-category">${product.category}</span>
                         <h3 class="product-name">${product.name}</h3>
-                        <div class="product-price">EGP ${product.price.toLocaleString()}</div>
+                        <div class="product-price-row">
+                            <div class="product-price">EGP ${product.price.toLocaleString()}</div>
+                            <button class="quick-add-btn" onclick="event.stopPropagation(); viewProduct(${product.id})" ${product.stock === 0 ? 'disabled' : ''} title="${product.stock === 0 ? 'Sold Out' : 'Select Size'}">
+                                ${product.stock === 0 ? '✕' : '+'}
+                            </button>
+                        </div>
                         <div class="product-stock ${getStockClass(product.stock)}">
                             ${getStockText(product.stock)}
                         </div>
@@ -501,10 +507,10 @@ function renderAbout() {
                 <div class="about-image">👑</div>
                 <div class="about-content">
                     <h2>Excellence in Every Stitch</h2>
-                    <p>Founded with a singular vision — to create footwear that transcends trends and stands as a testament to timeless elegance. At EL Dawly, every pair begins as a sketch and ends as a masterpiece.</p>
+                    <p>Founded with a singular vision — to create footwear that transcends trends and stands as a testament to timeless elegance. At AL Dawly, every pair begins as a sketch and ends as a masterpiece.</p>
                     <p>Our master craftsmen employ techniques honed over decades, using only the finest materials sourced from the most prestigious tanneries and mills across the globe.</p>
                     <p>From the selection of the first hide to the final polish by hand, quality is never compromised. We measure our success not by the number of pairs we create, but by the number of generations who wear them.</p>
-                    <p>When you step into EL Dawly, you don't just wear shoes — you wear a tradition. A philosophy. A promise of excellence that will accompany you on life's most important journeys.</p>
+                    <p>When you step into AL Dawly, you don't just wear shoes — you wear a tradition. A philosophy. A promise of excellence that will accompany you on life's most important journeys.</p>
                 </div>
             </div>
 
@@ -533,15 +539,15 @@ function renderContact() {
     return `
         <section class="section" id="contact">
             <div class="section-title">
-                <h2>Contact EL Dawly Store</h2>
-                <p>EL Dawly Premium Shoes — Suez (Delivery & Support in Suez Only)</p>
+                <h2>Contact AL Dawly Store</h2>
+                <p>AL Dawly Premium Shoes — Suez (Delivery & Support in Suez Only)</p>
             </div>
             
             <div class="contact-grid">
                 <div>
                     <div class="contact-info-card">
                         <h3><span class="contact-icon">🏪</span> Store</h3>
-                        <p><strong>EL Dawly Premium Shoes</strong><br>Suez Branch</p>
+                        <p><strong>AL Dawly Premium Shoes</strong><br>Suez Branch</p>
                     </div>
                     <div class="contact-info-card">
                         <h3><span class="contact-icon">📍</span> Store Location</h3>
@@ -553,7 +559,7 @@ function renderContact() {
                     </div>
                     <div class="contact-info-card">
                         <h3><span class="contact-icon">💬</span> WhatsApp Order Line</h3>
-                        <p><strong>Fast Reservations & Orders</strong><br>💬 <a href="https://wa.me/201211339267" target="_blank" rel="noopener noreferrer" style="color: var(--gold); font-weight: 600;">012 1133 9267</a><br><small style="opacity: 0.7;">Click to chat instantly with EL Dawly Store</small></p>
+                        <p><strong>Fast Reservations & Orders</strong><br>💬 <a href="https://wa.me/201211339267" target="_blank" rel="noopener noreferrer" style="color: var(--gold); font-weight: 600;">012 1133 9267</a><br><small style="opacity: 0.7;">Click to chat instantly with AL Dawly Store</small></p>
                     </div>
                     <div class="contact-info-card">
                         <h3><span class="contact-icon">⏰</span> Working Hours</h3>
@@ -562,7 +568,7 @@ function renderContact() {
                 </div>
                 
                 <div class="contact-form">
-                    <h3>Send a Message to EL Dawly Store</h3>
+                    <h3>Send a Message to AL Dawly Store</h3>
                     <form onsubmit="handleContactSubmit(event)">
                         <div class="form-group">
                             <label>Your Full Name</label>
@@ -584,7 +590,7 @@ function renderContact() {
                         </div>
                         <div class="form-group">
                             <label>Your Message</label>
-                            <textarea id="contactMessage" required placeholder="Type your message for EL Dawly Store — mention shoe model name/number if possible..." rows="5"></textarea>
+                            <textarea id="contactMessage" required placeholder="Type your message for AL Dawly Store — mention shoe model name/number if possible..." rows="5"></textarea>
                         </div>
                         <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                             <button type="submit" id="contactSubmitBtn" class="btn btn-lg" style="flex: 1;">Send Message ✉️</button>
@@ -701,7 +707,7 @@ function renderAdminDashboard(products) {
             <div class="admin-header">
                 <div>
                     <h2>Inventory Control</h2>
-                    <p style="color: var(--gray);">EL Dawly Atelier — Collection Management Dashboard</p>
+                    <p style="color: var(--gray);">AL Dawly Atelier — Collection Management Dashboard</p>
                 </div>
                 <div class="admin-actions">
                     <button class="btn" onclick="openAddProductModal()">➕ Introduce Piece</button>
@@ -1652,7 +1658,7 @@ async function sendWhatsAppOrder(order, shouldNotify) {
         `   Payment Fee (${order.paymentMethodName}): EGP ${order.paymentFee.toLocaleString()}\n` +
         `   ⭐ TOTAL: *EGP ${order.total.toLocaleString()}*\n\n` +
         `💳 Payment Method: *${order.paymentMethodName}*\n\n` +
-        `— From EL Dawly Website ✨`
+        `— From AL Dawly Website ✨`
     );
 
 const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
@@ -1697,7 +1703,7 @@ function renderThankYou() {
         <div class="thank-you-page">
             <div class="success-icon">✓</div>
             <h1>Order Placed Successfully!</h1>
-            <p class="subtitle">Thank you for choosing EL Dawly. We'll process your order immediately.</p>
+            <p class="subtitle">Thank you for choosing AL Dawly. We'll process your order immediately.</p>
 
             <div class="order-details-box">
                 <div class="order-number">ORDER: ${order.orderNumber}</div>

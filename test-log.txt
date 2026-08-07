@@ -1,0 +1,2 @@
+PRODUCTS OK: 50
+ORDER: 201 {"success":true,"message":"Order placed successfully","orderNumber":"ELD-TEST"}

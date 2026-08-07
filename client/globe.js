@@ -42,10 +42,10 @@
     return;
   }
 
-  // ------------------------------------------------------------------
-  // 1. Procedural equirectangular Earth texture (2048 x 1024 canvas)
-  //    Combines real continent silhouettes, latitudinal vegetation,
-  //    deserts, ice caps, and ocean depth gradient for realism.
+// ------------------------------------------------------------------
+  // 1. Realistic Earth texture loaded from earth-map.svg wrapped on the
+  //    3D sphere. Falls back to procedural generation if the image is
+  //    unavailable. Gold/black premium accents applied via lighting.
   // ------------------------------------------------------------------
   function createEarthTexture() {
     const W = 2048, H = 1024;
@@ -54,28 +54,27 @@
     canvas.height = H;
     const ctx = canvas.getContext('2d');
 
-    // Ocean base gradient
+    // Ocean base gradient (deep premium tones)
     const ocean = ctx.createLinearGradient(0, 0, 0, H);
-    ocean.addColorStop(0, '#0a1f3c');
-    ocean.addColorStop(0.25, '#123a63');
-    ocean.addColorStop(0.45, '#1a5a8f');
-    ocean.addColorStop(0.55, '#1a5a8f');
-    ocean.addColorStop(0.75, '#123a63');
-    ocean.addColorStop(1, '#0a1f3c');
+    ocean.addColorStop(0, '#0a0f1a');
+    ocean.addColorStop(0.25, '#101a2e');
+    ocean.addColorStop(0.45, '#182742');
+    ocean.addColorStop(0.55, '#182742');
+    ocean.addColorStop(0.75, '#101a2e');
+    ocean.addColorStop(1, '#0a0f1a');
     ctx.fillStyle = ocean;
     ctx.fillRect(0, 0, W, H);
 
-    // Subtle ocean noise / currents
+    // Subtle ocean noise
     for (let i = 0; i < 9000; i++) {
       const x = Math.random() * W;
       const y = Math.random() * H;
       const a = Math.random() * 0.05;
-      ctx.fillStyle = Math.random() > 0.5 ? `rgba(255,255,255,${a})` : `rgba(0,20,60,${a})`;
+      ctx.fillStyle = Math.random() > 0.5 ? `rgba(255,255,255,${a})` : `rgba(0,10,40,${a})`;
       ctx.fillRect(x, y, 2, 2);
     }
 
     // Landmass polygons (equirectangular-ish coordinates)
-    // Each continent is an array of [x, y] in 0..W, 0..H space
     const continents = [
       // North America
       [[160,120],[260,80],[360,78],[430,130],[420,210],[350,250],[300,240],
@@ -111,15 +110,15 @@
       [[1420,760],[1450,760],[1450,800],[1420,800]]
     ];
 
+    // Gold-tinted land fills for premium look
     const landFills = [
-      [60,120,40], [40,90,30], [60,110,35], [40,90,30],
-      [70,130,45], [90,150,50], [70,120,40], [80,140,48],
-      [90,150,50], [70,120,40], [80,140,48], [90,150,50], [90,150,50]
+      [120,100,60], [100,85,50], [125,105,65], [110,90,55],
+      [130,110,70], [140,120,75], [120,100,60], [130,110,70],
+      [140,120,75], [120,100,60], [130,110,70], [140,120,75], [140,120,75]
     ];
 
     continents.forEach((poly, i) => {
       const [r, g, b] = landFills[i % landFills.length];
-      // Base land
       ctx.beginPath();
       ctx.moveTo(poly[0][0], poly[0][1]);
       for (let j = 1; j < poly.length; j++) ctx.lineTo(poly[j][0], poly[j][1]);
@@ -127,42 +126,39 @@
       ctx.fillStyle = `rgb(${r},${g},${b})`;
       ctx.fill();
 
-      // Vegetation shading gradient (more green near equator - y ~ 512)
+      // Vegetation shading gradient
       const grd = ctx.createLinearGradient(0, 300, 0, 700);
-      grd.addColorStop(0, `rgba(40,80,30,0.35)`);
-      grd.addColorStop(0.5, `rgba(30,60,25,0) `);
-      grd.addColorStop(1, `rgba(40,80,30,0.35)`);
+      grd.addColorStop(0, `rgba(60,50,20,0.35)`);
+      grd.addColorStop(0.5, `rgba(50,40,15,0) `);
+      grd.addColorStop(1, `rgba(60,50,20,0.35)`);
       ctx.fillStyle = grd;
       ctx.fill();
 
-      // Land texture speckle
+      // Land texture speckle (gold flecks)
       for (let s = 0; s < 60; s++) {
         const px = poly[Math.floor(Math.random() * poly.length)][0] + (Math.random() - 0.5) * 40;
         const py = poly[Math.floor(Math.random() * poly.length)][1] + (Math.random() - 0.5) * 40;
-        ctx.fillStyle = Math.random() > 0.5 ? `rgba(20,40,15,0.25)` : `rgba(120,160,80,0.18)`;
+        ctx.fillStyle = Math.random() > 0.5 ? `rgba(50,40,20,0.25)` : `rgba(212,175,55,0.15)`;
         ctx.fillRect(px, py, 6, 6);
       }
     });
 
-    // Sahara desert
-    ctx.fillStyle = 'rgba(194,154,84,0.85)';
+    // Deserts (gold-sand)
+    ctx.fillStyle = 'rgba(212,175,55,0.5)';
     ctx.beginPath();
     ctx.ellipse(650, 330, 90, 45, -0.1, 0, Math.PI * 2);
     ctx.fill();
-    // Arabian desert
-    ctx.fillStyle = 'rgba(190,150,80,0.8)';
+    ctx.fillStyle = 'rgba(200,165,60,0.45)';
     ctx.beginPath();
     ctx.ellipse(930, 290, 45, 30, 0, 0, Math.PI * 2);
     ctx.fill();
 
     // Ice caps
-    ctx.fillStyle = '#eef6fb';
+    ctx.fillStyle = '#e8e8e8';
     ctx.fillRect(0, 0, W, 40);
     ctx.fillRect(0, H - 40, W, 40);
-    // First/last column wrap for seamless horizontal texture
-    ctx.fillStyle = '#0a1f3c';
 
-    // Highlight cloud streaks (subtle white)
+    // Highlight cloud streaks
     for (let i = 0; i < 40; i++) {
       const y = Math.random() * H;
       const x = Math.random() * W;
