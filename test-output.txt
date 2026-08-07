@@ -1,0 +1,12 @@
+--- TEST START ---
+[SRV] ╔═══════════════════════════════════════════════════════╗
+[SRV] ║           ✨  EL DAWLY LUXURY SHOES  ✨               ║
+╠═══════════════════════════════════════════════════════╣
+║  🖥️  Server running: http://localhost:3999            ║
+║  📦  Environment: development
+║  🔐  Admin Username: admin                            ║
+║  🔐  Admin Password: admin123                         ║
+╚═══════════════════════════════════════════════════════╝
+[POST /api/orders] => status 201, body: {"success":true,"message":"Order placed successfully","orderNumber":"ELD-TEST-12345678"}
+[GET /api/nonexistent] => status 404
+--- TEST DONE ---

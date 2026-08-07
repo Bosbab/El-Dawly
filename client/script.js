@@ -1592,7 +1592,7 @@ async function placeOrder() {
         createdAt: new Date().toISOString()
     };
 
-    // Try the backend API first. If it fails (static hosting without a
+// Try the backend API first. If it fails (static hosting without a
     // server), fall back to delivering the order via WhatsApp so the
     // purchase is never lost.
     let apiSuccess = false;
@@ -1604,11 +1604,6 @@ async function placeOrder() {
         apiSuccess = true;
     } catch (err) {
         console.warn('Order API failed — using WhatsApp fallback:', err);
-        try {
-            sendWhatsAppOrder(orderData);
-        } catch (waErr) {
-            console.error('WhatsApp fallback also failed:', waErr);
-        }
     }
 
     // Save the placed order regardless of delivery path
@@ -1621,19 +1616,18 @@ async function placeOrder() {
     };
     selectedProductSize = null;
 
-    // If API succeeded, optionally notify the store via WhatsApp (non-blocking)
-    if (apiSuccess && orderData.paymentMethod === 'cod') {
-        try {
-            sendWhatsAppOrder(orderData);
-        } catch (waErr) {
-            console.warn('WhatsApp notification failed (order still placed):', waErr);
-        }
+    // Notify the store via WhatsApp (non-blocking; never blocks success).
+    try {
+        sendWhatsAppOrder(orderData, apiSuccess || orderData.paymentMethod === 'cod');
+    } catch (waErr) {
+        console.warn('WhatsApp notification failed (order still placed):', waErr);
     }
 
     navigate('thank-you');
 }
 
-async function sendWhatsAppOrder(order) {
+async function sendWhatsAppOrder(order, shouldNotify) {
+    if (!shouldNotify) return;
     const itemsList = order.items.map((item, i) =>
         `${i + 1}. ${item.name} (Size ${item.size}) × ${item.quantity} - EGP ${(item.price * item.quantity).toLocaleString()}`
     ).join('\n');
@@ -1661,9 +1655,26 @@ async function sendWhatsAppOrder(order) {
         `— From EL Dawly Website ✨`
     );
 
-    setTimeout(() => {
-        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
-    }, 500);
+const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+
+    // Attempt 1: open in a new tab.
+    let opened = false;
+    try {
+        const win = window.open(waUrl, '_blank');
+        opened = !!win;
+    } catch (e) {
+        opened = false;
+    }
+
+    // Attempt 2 (fallback): if the popup was blocked, navigate so the order
+    // is still delivered.
+    if (!opened) {
+        setTimeout(() => {
+            try {
+                window.location.href = waUrl;
+            } catch (e) {}
+        }, 400);
+    }
 }
 
 function renderThankYou() {
@@ -1694,8 +1705,8 @@ function renderThankYou() {
                 <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--charcoal);">
                     📦 What happens next?
                 </div>
-                <div style="color: var(--premium-grey-5); line-height: 1.9; margin-bottom: 1.5rem;">
-                    ${order.paymentMethod === 'Cash on Delivery'
+<div style="color: var(--premium-grey-5); line-height: 1.9; margin-bottom: 1.5rem;">
+                    ${order.paymentMethod === 'cod'
                         ? `✅ Your order is confirmed. Our team will call you on <strong>${order.shipping.phone}</strong> within 24 hours to confirm. Delivery within 1-2 business days in Suez.`
                         : `⏳ Order placed! We'll contact you shortly to confirm the ${order.paymentMethodName} payment details. Once payment is confirmed, your order will be delivered within Suez in 1-2 days.`
                     }
@@ -1946,7 +1957,7 @@ renderHome = function(featuredProducts) {
     const html = origRenderHome(featuredProducts);
     setTimeout(() => {
         setupQuickAddButtons();
-        if (window.EarthGlobe) {
+        if (window.EarthGlobe && typeof window.EarthGlobe.cleanup === 'function') {
             window.EarthGlobe.cleanup();
             window.EarthGlobe.init();
         }

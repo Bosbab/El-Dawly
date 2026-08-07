@@ -3,7 +3,44 @@
    Earth texture, clouds, atmosphere glow, and continuous rotation. */
 
 (function () {
-  if (typeof THREE === 'undefined') return;
+  // If Three.js failed to load (e.g. CDN blocked/offline), render a CSS
+  // fallback earth so the logo/hero never appear empty.
+  if (typeof THREE === 'undefined') {
+    const fallbackCSS = `
+      .earth-fallback{position:absolute;inset:0;border-radius:50%;
+        background:radial-gradient(circle at 30% 30%, #1e3a5f 0%, #0b1d3a 35%, #061427 70%, #020814 100%);
+        display:flex;align-items:center;justify-content:center;overflow:hidden;}
+      .earth-fallback::before{content:'';position:absolute;inset:0;border-radius:50%;
+        background:url('./images/earth-map.svg') center/cover no-repeat;
+        animation:earthFallSpin 18s linear infinite;}
+      @keyframes earthFallSpin{from{transform:rotateY(0)}to{transform:rotateY(360deg)}}
+    `;
+    const style = document.createElement('style');
+    style.textContent = fallbackCSS;
+    document.head.appendChild(style);
+
+    function applyFallback() {
+      document.querySelectorAll('.earth-globe-canvas, .hero-earth-globe-canvas').forEach(canvas => {
+        if (canvas.__fallback) return;
+        canvas.__fallback = true;
+        const holder = document.createElement('div');
+        holder.className = 'earth-fallback';
+        canvas.parentNode.insertBefore(holder, canvas);
+        canvas.style.display = 'none';
+      });
+    }
+
+    window.EarthGlobe = {
+      init: applyFallback,
+      cleanup: function () {}
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', applyFallback);
+    } else {
+      applyFallback();
+    }
+    return;
+  }
 
   // ------------------------------------------------------------------
   // 1. Procedural equirectangular Earth texture (2048 x 1024 canvas)
