@@ -4,26 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EL Dawly - Premium Luxury Footwear</title>
-    <meta name="description" content="EL Dawly - Premium quality shoes for every occasion. Luxury footwear crafted with excellence.">
+<meta name="description" content="EL Dawly - Premium quality shoes for every occasion. Luxury footwear crafted with excellence.">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-container">
             <a href="#home" class="logo" onclick="navigate('home')">
-                <span class="logo-icon">
-                    <div class="earth-logo-container">
-                        <div class="earth-sphere">
-                            <div class="earth-map"></div>
-                            <div class="earth-clouds">
-                                <div class="earth-cloud cc1"></div>
-                                <div class="earth-cloud cc2"></div>
-                                <div class="earth-cloud cc3"></div>
-                            </div>
-                            <div class="earth-ocean-shine"></div>
-                            <div class="earth-highlight"></div>
-                            <div class="earth-atmosphere"></div>
-                        </div>
+<span class="logo-icon">
+                    <div class="earth-globe-container" id="navGlobeContainer">
+                        <canvas id="navEarthGlobe" class="earth-globe-canvas"></canvas>
                     </div>
                 </span>
                 <span class="logo-text">EL DAWLY</span>
@@ -123,6 +114,7 @@
         </div>
     </div>
 
+<script src="globe.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

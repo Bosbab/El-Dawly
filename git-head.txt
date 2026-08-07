@@ -1,0 +1,8 @@
+commit c10c3e5e295cbbb3b35665bcdbe8b84e28bded8f
+Author: Bosbab <omargadthebest1@gmail.com>
+Date:   Fri Aug 7 23:28:50 2026 +0300
+
+    add free plan to render.yaml
+
+ render.yaml | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)

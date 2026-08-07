@@ -1,0 +1,2 @@
+STATUS: 201
+BODY: {"success":true,"message":"Order placed successfully","orderNumber":"ELD-T1786136178984"}

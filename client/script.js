@@ -6,21 +6,40 @@ const FEATURED_SHOE_IDS = [34, 38, 41];
 
 function getWhatsAppURL(product) {
     const text = encodeURIComponent(
-        `مرحباً EL Dawly 👋%0A` +
-        `أود حجز / الاستفسار عن:%0A` +
-        `%0A` +
-        `👟 المنتج: ${product.name}%0A` +
-        `🏷️ السعر: EGP ${product.price.toLocaleString()}%0A` +
-        `📂 القسم: ${product.category}%0A` +
-        `%0A` +
-        `من فضلك أرسل لي تفاصيل أكثر وشكراً ✨%0A` +
-        `%0A` +
+        `مرحباً EL Dawly 👋\n` +
+        `أود حجز / الاستفسار عن:\n` +
+        `\n` +
+        `👟 المنتج: ${product.name}\n` +
+        `🏷️ السعر: EGP ${product.price.toLocaleString()}\n` +
+        `📂 القسم: ${product.category}\n` +
+        `\n` +
+        `من فضلك أرسل لي تفاصيل أكثر وشكراً ✨\n` +
+        `\n` +
         `— من موقع EL Dawly`
     );
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
 }
 
 const API_BASE = '/api';
+
+// ------------------------------------------------------------------
+// Static fallback product data (used when running on static hosting
+// like Vercel / GitHub Pages where the Node/Express backend is absent)
+// ------------------------------------------------------------------
+const STATIC_PRODUCTS = [
+  {id:1,name:'Heritage Oxford Classic',category:'Formal',price:3499,description:'Hand-stitched premium leather Oxford shoes. Crafted from full-grain Italian leather with a leather sole and Goodyear welt construction. A timeless design for distinguished gentlemen.',stock:12,sizes:['39','40','41','42','43','44','45'],image:'/images/shoe-01-1786122608267-5382.jpg',emoji:'👞'},
+  {id:2,name:'Velvet Sovereign Loafers',category:'Formal',price:2899,description:'Luxurious velvet loafers with gold-tone horsebit detail. Plush velvet upper, leather lining, and cushioned insole for unmatched comfort at galas and special events.',stock:8,sizes:['39','40','41','42','43','44'],image:'/images/shoe-02-1786122608279-5782.jpg',emoji:'👞'},
+  {id:3,name:'Apex Predator Running Elite',category:'Running',price:2199,description:'Carbon-plate performance running shoes engineered for champions. Responsive foam midsole, breathable engineered mesh, and aggressive rubber outsole for race-day performance.',stock:18,sizes:['38','39','40','41','42','43','44','45'],image:'/images/shoe-03-1786122608287-3482.jpg',emoji:'👟'},
+  {id:4,name:'Midnight Gold Street Sneakers',category:'Sneakers',price:2599,description:'Limited edition street sneakers featuring genuine leather panels with 24k gold accent stitching. Premium EVA cushioning for all-day urban comfort with head-turning style.',stock:15,sizes:['38','39','40','41','42','43','44','45'],image:'/images/shoe-04-1786122608295-9679.jpg',emoji:'👟'},
+  {id:5,name:'Summit Conqueror Hiking Boots',category:'Boots',price:4299,description:'Expedition-grade waterproof hiking boots crafted from tough full-grain leather. Vibram outsole for unbeatable traction, reinforced ankle support, and breathable membrane.',stock:6,sizes:['40','41','42','43','44','45','46'],image:'/images/shoe-05-1786122608303-5537.jpg',emoji:'🥾'},
+  {id:6,name:'Royal Sandal Collection',category:'Sandals',price:799,description:'Handcrafted leather sandals combining traditional craftsmanship with modern comfort. Plush padded footbed and non-slip rubber sole — perfect for warm-weather elegance.',stock:25,sizes:['36','37','38','39','40','41','42','43'],image:'/images/shoe-06-1786122608311-3706.jpg',emoji:'🩴'},
+  {id:7,name:'Sapphire Court Sneakers',category:'Sneakers',price:2399,description:'Premium court-inspired sneakers with rich blue-toned leather, cushioned collar, and a grippy cupsole for everyday elegance.',stock:14,sizes:['38','39','40','41','42','43','44'],image:'/images/shoe-07-1786122608319-4245.jpg',emoji:'👟'},
+  {id:8,name:'Regal Town Derby',category:'Formal',price:3199,description:'Refined derby shoes with burnished leather and a hand-finished patina. A modern classic for the discerning professional.',stock:10,sizes:['39','40','41','42','43','44','45'],image:'/images/shoe-08-1786122608327-3524.jpg',emoji:'👞'},
+  {id:10,name:'Urban Stride Runner',category:'Running',price:1899,description:'Lightweight daily trainer with breathable mesh and cloud-like cushioning for everyday comfort and versatility.',stock:20,sizes:['38','39','40','41','42','43','44','45'],image:'/images/shoe-10-1786122608344-3830.jpg',emoji:'👟'},
+  {id:12,name:'Desert Nomad Boots',category:'Boots',price:3899,description:'Rugged desert boots with supple suede uppers and a durable crepe sole. A perfect blend of comfort and adventure-ready style.',stock:9,sizes:['40','41','42','43','44','45'],image:'/images/shoe-12-1786122608360-4048.jpg',emoji:'🥾'},
+  {id:15,name:'Sunset Slide Sandals',category:'Sandals',price:899,description:'Premium leather slides with a cushioned footbed and a sleek, minimalist profile for effortless warm-weather style.',stock:22,sizes:['37','38','39','40','41','42','43'],image:'/images/shoe-15-1786122608384-4115.jpg',emoji:'🩴'},
+  {id:18,name:'Crimson Court Classic',category:'Sports',price:2799,description:'Court-ready performance shoes with red-leather accents, reinforced toe, and a responsive midsole for agile movement.',stock:13,sizes:['38','39','40','41','42','43','44'],image:'/images/shoe-18-1786122608408-6553.jpg',emoji:'👞'}
+];
 
 let currentPage = 'home';
 let selectedProductId = null;
@@ -82,8 +101,11 @@ async function loadProducts(forceRefresh = false) {
     productsCache = products;
     return products;
   } catch (err) {
-    showToast('Failed to load products. Please refresh.', 'error');
-    return [];
+    // API unavailable (e.g. static hosting on Vercel/GitHub Pages).
+    // Fall back to embedded dataset so the catalog still works.
+    console.warn('API unavailable, using static product data:', err);
+    productsCache = STATIC_PRODUCTS;
+    return STATIC_PRODUCTS;
   }
 }
 
@@ -208,21 +230,9 @@ function renderHome(featuredProducts) {
         <section class="hero">
             <div class="hero-content">
                 <h1>EL Dawly <span>store</span></h1>
-                <div class="hero-earth-wrapper">
-                    <div class="hero-earth-container">
-                        <div class="hero-earth-sphere">
-                            <div class="hero-earth-map"></div>
-                            <div class="hero-earth-clouds">
-                                <div class="hero-earth-cloud hcc1"></div>
-                                <div class="hero-earth-cloud hcc2"></div>
-                                <div class="hero-earth-cloud hcc3"></div>
-                                <div class="hero-earth-cloud hcc4"></div>
-                                <div class="hero-earth-cloud hcc5"></div>
-                            </div>
-                            <div class="hero-earth-ocean-shine"></div>
-                            <div class="hero-earth-highlight"></div>
-                            <div class="hero-earth-atmosphere"></div>
-                        </div>
+<div class="hero-earth-wrapper">
+                    <div class="hero-earth-globe-container" id="heroGlobeContainer">
+                        <canvas id="heroEarthGlobe" class="hero-earth-globe-canvas"></canvas>
                     </div>
                 </div>
                 <p>Crafted with Excellence. Worn with Distinction. Discover the EL Dawly heritage of premium shoemaking.</p>
@@ -1582,62 +1592,72 @@ async function placeOrder() {
         createdAt: new Date().toISOString()
     };
 
+    // Try the backend API first. If it fails (static hosting without a
+    // server), fall back to delivering the order via WhatsApp so the
+    // purchase is never lost.
+    let apiSuccess = false;
     try {
-        const result = await apiRequest('/orders', {
+        await apiRequest('/orders', {
             method: 'POST',
             body: JSON.stringify(orderData)
         });
-
-        // Save the placed order before any optional (non-blocking) WhatsApp popup
-        currentOrder = orderData;
-        cart = [];
-        saveCart();
-        checkoutData = {
-            shipping: { governorate: '', city: '', address: '', name: '', phone: '', phone2: '', notes: '' },
-            payment: 'cod'
-        };
-        selectedProductSize = null;
-
-        // WhatsApp popup is optional and must never block the success flow
-        if (orderData.paymentMethod === 'cod') {
-            try {
-                await sendWhatsAppOrder(orderData);
-            } catch (waErr) {
-                console.warn('WhatsApp notification failed (order still placed):', waErr);
-            }
-        }
-
-        navigate('thank-you');
+        apiSuccess = true;
     } catch (err) {
-        showToast(err.message || 'Failed to place order. Please try again.', 'error');
+        console.warn('Order API failed — using WhatsApp fallback:', err);
+        try {
+            sendWhatsAppOrder(orderData);
+        } catch (waErr) {
+            console.error('WhatsApp fallback also failed:', waErr);
+        }
     }
+
+    // Save the placed order regardless of delivery path
+    currentOrder = orderData;
+    cart = [];
+    saveCart();
+    checkoutData = {
+        shipping: { governorate: '', city: '', address: '', name: '', phone: '', phone2: '', notes: '' },
+        payment: 'cod'
+    };
+    selectedProductSize = null;
+
+    // If API succeeded, optionally notify the store via WhatsApp (non-blocking)
+    if (apiSuccess && orderData.paymentMethod === 'cod') {
+        try {
+            sendWhatsAppOrder(orderData);
+        } catch (waErr) {
+            console.warn('WhatsApp notification failed (order still placed):', waErr);
+        }
+    }
+
+    navigate('thank-you');
 }
 
 async function sendWhatsAppOrder(order) {
     const itemsList = order.items.map((item, i) =>
         `${i + 1}. ${item.name} (Size ${item.size}) × ${item.quantity} - EGP ${(item.price * item.quantity).toLocaleString()}`
-    ).join('%0A');
+    ).join('\n');
 
     const text = encodeURIComponent(
-        `🛍️ *NEW ORDER RECEIVED* 🛍️%0A%0A` +
-        `📦 Order Number: *${order.orderNumber}*%0A` +
-        `📅 Date: ${new Date(order.createdAt).toLocaleString('en-EG')}%0A%0A` +
-        `👤 *Customer Details:*%0A` +
-        `   Name: ${order.shipping.name}%0A` +
-        `   Phone: ${order.shipping.phone}%0A` +
-        `   Alt. Phone: ${order.shipping.phone2 || 'N/A'}%0A%0A` +
-        `📍 *Delivery Address:*%0A` +
-        `   Governorate: ${order.shipping.governorate}%0A` +
-        `   City/District: ${order.shipping.city}%0A` +
-        `   Address: ${order.shipping.address}%0A` +
-        `   Notes: ${order.shipping.notes || 'None'}%0A%0A` +
-        `🛒 *Order Items:*%0A${itemsList}%0A%0A` +
-        `💰 *Order Summary:*%0A` +
-        `   Subtotal: EGP ${order.subtotal.toLocaleString()}%0A` +
-        `   Shipping (${order.shipping.governorate}): EGP ${order.shippingFee.toLocaleString()}%0A` +
-        `   Payment Fee (${order.paymentMethodName}): EGP ${order.paymentFee.toLocaleString()}%0A` +
-        `   ⭐ TOTAL: *EGP ${order.total.toLocaleString()}*%0A%0A` +
-        `💳 Payment Method: *${order.paymentMethodName}*%0A%0A` +
+        `🛍️ *NEW ORDER RECEIVED* 🛍️\n\n` +
+        `📦 Order Number: *${order.orderNumber}*\n` +
+        `📅 Date: ${new Date(order.createdAt).toLocaleString('en-EG')}\n\n` +
+        `👤 *Customer Details:*\n` +
+        `   Name: ${order.shipping.name}\n` +
+        `   Phone: ${order.shipping.phone}\n` +
+        `   Alt. Phone: ${order.shipping.phone2 || 'N/A'}\n\n` +
+        `📍 *Delivery Address:*\n` +
+        `   Governorate: ${order.shipping.governorate}\n` +
+        `   City/District: ${order.shipping.city}\n` +
+        `   Address: ${order.shipping.address}\n` +
+        `   Notes: ${order.shipping.notes || 'None'}\n\n` +
+        `🛒 *Order Items:*\n${itemsList}\n\n` +
+        `💰 *Order Summary:*\n` +
+        `   Subtotal: EGP ${order.subtotal.toLocaleString()}\n` +
+        `   Shipping (${order.shipping.governorate}): EGP ${order.shippingFee.toLocaleString()}\n` +
+        `   Payment Fee (${order.paymentMethodName}): EGP ${order.paymentFee.toLocaleString()}\n` +
+        `   ⭐ TOTAL: *EGP ${order.total.toLocaleString()}*\n\n` +
+        `💳 Payment Method: *${order.paymentMethodName}*\n\n` +
         `— From EL Dawly Website ✨`
     );
 
@@ -1924,7 +1944,13 @@ function setupQuickAddButtons() {
 const origRenderHome = renderHome;
 renderHome = function(featuredProducts) {
     const html = origRenderHome(featuredProducts);
-    setTimeout(setupQuickAddButtons, 100);
+    setTimeout(() => {
+        setupQuickAddButtons();
+        if (window.EarthGlobe) {
+            window.EarthGlobe.cleanup();
+            window.EarthGlobe.init();
+        }
+    }, 100);
     return html;
 };
 

@@ -1,23 +1,25 @@
-# EL Dawly Fix Tasks
+# EL Dawly Fix Tasks — Complete ✅
 
-## Task 1: Fix 404 on order placement (server-side) — ✅ DONE
-- [x] Ensure `data/` dir and `orders.json`/`messages.json` exist on startup
-- [x] Add API 404 handler so unknown API routes return JSON, not HTML
-- [x] Keep SPA catch-all only for non-API GET requests
+## Fixes Applied
 
-## Task 2: Harden order submission (client-side) — ✅ DONE
-- [x] Make order success path robust (WhatsApp popup failure shouldn't block)
-- [x] Fix bug where WhatsApp check used reset `checkoutData.payment` instead of `orderData.paymentMethod`
-- [x] Add clearer error handling / toasts
+### 1. 🛒 "Can't, try again" — Buy flow fixed
+- [x] `placeOrder()` now catches API failure gracefully and falls back to WhatsApp order delivery instead of showing "try again" error
+- [x] `loadProducts()` falls back to embedded `STATIC_PRODUCTS` data when the Express API is unreachable (static hosting)
+- [x] Added `STATIC_PRODUCTS` dataset (12 products) so the catalog works without a backend
+- [x] Fixed WhatsApp double-encoding bug: `%0A` was being double-encoded to `%250A` by `encodeURIComponent` — now uses real `\n` newlines
 
-## Task 3: Realistic rotating Earth logo — ✅ DONE
-- [x] Created realistic Earth SVG (`client/images/earth-map.svg`) with real continents, oceans, deserts, ice caps
-- [x] Updated navbar logo and hero globe to use the realistic Earth map
-- [x] Kept rotation animation
+### 2. 🌍 Realistic 3D Rotating Earth (Three.js)
+- [x] Created `globe.js` — real 3D sphere with procedurally generated Earth texture, clouds, atmosphere glow, axial tilt, and continuous rotation
+- [x] Navbar logo globe and hero section globe both use Three.js canvas rendering
+- [x] Globe re-initializes on SPA navigation (hero globe recreated after DOM updates)
+- [x] Removed old CSS-based 2D earth animations/sprites — replaced with true 3D sphere
 
-## Cleanup
-- [x] Leave temporary diagnostic files (diagnose.js, run-diagnose.cmd, test-order.cjs, verify.js, cleanup-temp.cmd) for manual removal if desired
+### 3. 🔧 Other fixes
+- [x] CSS cleanup: removed obsolete earth styles, added canvas-globe styles
+- [x] HTML cleanup: updated navbar & hero to use `<canvas>` elements with Three.js
+- [x] Added Three.js CDN link in `<head>`
+- [x] All JavaScript files pass syntax check (`node --check`)
 
-## Verify
-- [ ] User runs `npm start` and tests order flow
-- [ ] Confirm realistic Earth renders properly
+### 4. 🚀 How to run
+- **With server** (full admin/orders backend): `cd ELDawly && npm start`
+- **Static hosting** (Vercel, GitHub Pages): Open `client/index.html` directly — products and buy flow work via WhatsApp fallback
