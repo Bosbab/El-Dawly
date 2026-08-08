@@ -852,9 +852,9 @@ function renderProductForm(product) {
                         `
                     }
                 </div>
-                <input type="file" id="imageInput" accept="image/*" style="display: none;">
+<input type="file" id="imageInput" accept="image/*" style="display: none;">
                 ${selectedImageData ? `
-                    <button type="button" class="btn btn-sm btn-danger" style="margin-top: 0.75rem;" onclick="removeImage()">Remove Photography</button>
+                    <button type="button" id="imageRemoveBtn" class="btn btn-sm btn-danger" style="margin-top: 0.75rem;" onclick="removeImage()">Remove Photography</button>
                 ` : ''}
             </div>
             
@@ -946,6 +946,34 @@ function setupImageUpload() {
     });
 }
 
+function updateImagePreview() {
+    const uploadArea = document.getElementById('imageUploadArea');
+    if (!uploadArea) return;
+
+    if (selectedImageData) {
+        uploadArea.innerHTML = `<img src="${selectedImageData}" class="preview-image" id="previewImg">`;
+        let removeBtn = document.getElementById('imageRemoveBtn');
+        if (!removeBtn) {
+            removeBtn = document.createElement('button');
+            removeBtn.type = 'button';
+            removeBtn.id = 'imageRemoveBtn';
+            removeBtn.className = 'btn btn-sm btn-danger';
+            removeBtn.style.marginTop = '0.75rem';
+            removeBtn.textContent = 'Remove Photography';
+            removeBtn.onclick = removeImage;
+            uploadArea.parentElement.appendChild(removeBtn);
+        }
+    } else {
+        uploadArea.innerHTML = `
+            <div class="upload-icon">📸</div>
+            <p><strong>Click to upload</strong> or drag and drop imagery</p>
+            <p style="color: var(--gray); font-size: 0.85rem; margin-top: 0.5rem;">High resolution PNG, JPG, WEBP — Max 5MB</p>
+        `;
+        const removeBtn = document.getElementById('imageRemoveBtn');
+        if (removeBtn) removeBtn.remove();
+    }
+}
+
 function handleImageFile(file) {
     if (!file.type.startsWith('image/')) {
         showToast('Please select a valid image file', 'error');
@@ -960,22 +988,14 @@ function handleImageFile(file) {
     const reader = new FileReader();
     reader.onload = (e) => {
         selectedImageData = e.target.result;
-        if (editingProductId) {
-            openEditProductModal(editingProductId);
-        } else {
-            openAddProductModal();
-        }
+        updateImagePreview();
     };
     reader.readAsDataURL(file);
 }
 
 function removeImage() {
     selectedImageData = null;
-    if (editingProductId) {
-        openEditProductModal(editingProductId);
-    } else {
-        openAddProductModal();
-    }
+    updateImagePreview();
 }
 
 async function handleProductSubmit(e) {

@@ -1,11 +1,9 @@
-# TODO - Home Screen Black & Gold Redesign
-
-## Task
-Make the home screen background plain black with golden font, while the rest of the website stays plain white with black font.
+# Admin Dashboard Edit/Image Fix
 
 ## Steps
-- [x] Analyze code (script.js renderHome, styles.css)
-- [x] Confirm plan with user
-- [x] Add `home-dark` class to the three home sections in `script.js` (renderHome)
-- [x] Add `.home-dark` CSS rules in `styles.css` (black bg, golden text)
-- [x] Verify home = black/gold, other pages = white/black
+- [x] Analyze the admin dashboard edit & image replacement flow (script.js, server.js, index.html)
+- [x] Add `updateImagePreview()` to update only the image preview DOM (not re-render the whole form)
+- [x] Update `handleImageFile()` to call `updateImagePreview()` instead of re-opening the modal
+- [x] Update `removeImage()` to call `updateImagePreview()` instead of re-opening the modal
+- [x] Add `id="imageRemoveBtn"` to the "Remove Photography" button in `renderProductForm()`
+- [x] Verify the fix in the admin dashboard (edit details + replace image persist)
