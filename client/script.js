@@ -230,9 +230,9 @@ function renderHome(featuredProducts) {
         <section class="hero">
             <div class="hero-content">
                 <h1>AL Dawly <span>store</span></h1>
-<div class="hero-earth-wrapper">
-                    <div class="hero-earth-globe-container" id="heroGlobeContainer">
-                        <canvas id="heroEarthGlobe" class="hero-earth-globe-canvas"></canvas>
+<div class="hero-logo3d-wrapper">
+                    <div class="hero-logo3d-container" id="heroLogoContainer">
+                        <img src="images/logo.jpeg" alt="AL Dawly Logo" class="hero-logo-img">
                     </div>
                 </div>
                 <p>Crafted with Excellence. Worn with Distinction. Discover the AL Dawly heritage of premium shoemaking.</p>
@@ -1963,6 +1963,12 @@ renderHome = function(featuredProducts) {
     const html = origRenderHome(featuredProducts);
     setTimeout(() => {
         setupQuickAddButtons();
+        if (window.Logo3D && typeof window.Logo3D.cleanup === 'function') {
+            window.Logo3D.cleanup();
+        }
+        if (window.Logo3D && typeof window.Logo3D.init === 'function') {
+            window.Logo3D.init();
+        }
         if (window.EarthGlobe && typeof window.EarthGlobe.cleanup === 'function') {
             window.EarthGlobe.cleanup();
             window.EarthGlobe.init();
