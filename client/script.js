@@ -227,7 +227,7 @@ function renderLoading() {
 
 function renderHome(featuredProducts) {
     return `
-        <section class="hero">
+<section class="hero home-dark">
             <div class="hero-content">
                 <h1>AL Dawly <span>store</span></h1>
 <div class="hero-logo3d-wrapper">
@@ -240,7 +240,7 @@ function renderHome(featuredProducts) {
             </div>
         </section>
 
-        <section class="section">
+<section class="section home-dark">
             <div class="features">
                 <div class="feature-card">
                     <div class="feature-icon">🏆</div>
@@ -265,7 +265,7 @@ function renderHome(featuredProducts) {
             </div>
         </section>
 
-        <section style="background: var(--black-2); padding: 6rem 2rem; border-top: var(--border-gold); border-bottom: var(--border-gold);">
+<section class="home-dark" style="background: #000000; padding: 6rem 2rem; border-top: var(--border-gold); border-bottom: var(--border-gold);">
             <div class="section">
                 <div class="section-title">
                     <h2>Signature Collection</h2>

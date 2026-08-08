@@ -3040,3 +3040,113 @@ body::before {
         margin: 2rem 0 1.5rem;
     }
 }
+
+/* ============================================================
+   HOME SCREEN — PLAIN BLACK BACKGROUND + GOLDEN FONT
+   (Applies ONLY to the home page content. Everything else on the
+   site stays plain white with black font.)
+   ============================================================ */
+.home-dark {
+    background: #000000 !important;
+    color: var(--gold-light);
+}
+
+.home-dark.hero {
+    background: #000000 !important;
+    color: var(--gold-light);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.home-dark .hero-content h1 {
+    color: var(--gold-light);
+}
+
+.home-dark .hero p {
+    color: var(--gold-light);
+    opacity: 0.95;
+}
+
+/* Section titles */
+.home-dark .section-title h2 {
+    color: var(--gold-light);
+}
+
+.home-dark .section-title p {
+    color: var(--gold-light);
+    opacity: 0.85;
+}
+
+/* Feature cards */
+.home-dark .feature-card {
+    background: #0a0a0a;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+}
+
+.home-dark .feature-card:hover {
+    background: #111111;
+    border-color: rgba(212, 175, 55, 0.6);
+}
+
+.home-dark .feature-card h3 {
+    color: var(--gold-light);
+}
+
+.home-dark .feature-card p {
+    color: var(--gold-light);
+    opacity: 0.8;
+}
+
+/* Product cards in the signature collection */
+.home-dark .product-card {
+    background: #0a0a0a;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.home-dark .product-card:hover {
+    border-color: rgba(212, 175, 55, 0.6);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+}
+
+.home-dark .product-card.featured-spin {
+    background: #0a0a0a;
+}
+
+.home-dark .product-name {
+    color: var(--gold-light);
+}
+
+.home-dark .product-price {
+    color: var(--gold-light);
+}
+
+.home-dark .product-category {
+    background: rgba(212, 175, 55, 0.15);
+    color: var(--gold-light);
+}
+
+.home-dark .product-stock {
+    color: var(--gold-light);
+    opacity: 0.85;
+}
+
+.home-dark .quick-add-btn {
+    border-color: var(--gold-light);
+    color: var(--gold-light);
+}
+
+.home-dark .quick-add-btn:hover {
+    background: var(--gold-light);
+    color: #000000;
+}
+
+/* Buttons on home */
+.home-dark .btn-secondary {
+    color: var(--gold-light);
+    border: 1.5px solid var(--gold-light);
+}
+
+.home-dark .btn-secondary:hover {
+    background: var(--gold-light);
+    color: #000000;
+}
