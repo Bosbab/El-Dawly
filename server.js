@@ -32,8 +32,13 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(express.static(path.join(__dirname, 'client')));
 
-if (!fs.existsSync(DATA_DIR)) {
-  fs.mkdirSync(DATA_DIR, { recursive: true });
+try {
+  if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  }
+} catch (err) {
+  // Vercel serverless filesystem is read-only; products live in Supabase.
+  console.warn('Could not create data dir:', err.message);
 }
 
 const DEFAULT_PRODUCTS = [
@@ -487,16 +492,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'index.html'));
 });
 
-app.listen(PORT, async () => {
-  console.log('╔═══════════════════════════════════════════════════════╗');
-  console.log('║           ✨  EL DAWLY LUXURY SHOES  ✨               ║');
-  console.log('╠═══════════════════════════════════════════════════════╣');
-  console.log(`║  🖥️  Server running: http://localhost:${PORT}            ║`);
-  console.log(`║  📦  Environment: ${process.env.NODE_ENV || 'development'}`);
-  console.log('║  🔐  Admin Username: admin                            ║');
-  console.log('║  🔐  Admin Password: admin123                         ║');
-  console.log('╚═══════════════════════════════════════════════════════╝');
-
+async function seedSupabaseIfEmpty() {
   // Seed Supabase with default products if the table is empty.
   // This ensures the store always has data on a fresh database.
   try {
@@ -513,4 +509,24 @@ app.listen(PORT, async () => {
   } catch (e) {
     console.warn('Supabase seed error:', e.message);
   }
-});
+}
+
+// Export for Vercel serverless. Only bind a port in local/dev.
+module.exports = app;
+
+if (!process.env.VERCEL) {
+  app.listen(PORT, async () => {
+    console.log('╔═══════════════════════════════════════════════════════╗');
+    console.log('║           ✨  EL DAWLY LUXURY SHOES  ✨               ║');
+    console.log('╠═══════════════════════════════════════════════════════╣');
+    console.log(`║  🖥️  Server running: http://localhost:${PORT}            ║`);
+    console.log(`║  📦  Environment: ${process.env.NODE_ENV || 'development'}`);
+    console.log('║  🔐  Admin Username: admin                            ║');
+    console.log('║  🔐  Admin Password: admin123                         ║');
+    console.log('╚═══════════════════════════════════════════════════════╝');
+    await seedSupabaseIfEmpty();
+  });
+} else {
+  // Fire-and-forget seed on cold start in serverless.
+  seedSupabaseIfEmpty();
+}
