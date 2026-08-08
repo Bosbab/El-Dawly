@@ -1,0 +1,11 @@
+=== Testing products table ===
+READ: ERROR
+message: Could not find the table 'public.products' in the schema cache
+code: PGRST205
+hint: 
+
+=== Testing write (upsert) ===
+WRITE: ERROR
+message: Could not find the table 'public.products' in the schema cache
+code: PGRST205
+hint: 

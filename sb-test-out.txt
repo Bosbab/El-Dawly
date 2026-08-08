@@ -1,0 +1,5 @@
+Testing Supabase connection...
+RESULT: ERROR
+Error message: Could not find the table 'public.products' in the schema cache
+Error code: PGRST205
+Hint: 

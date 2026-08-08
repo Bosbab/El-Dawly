@@ -5,6 +5,7 @@ const fs = require('fs');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { createClient } = require('@supabase/supabase-js');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,6 +17,15 @@ const ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH
 
 const DATA_DIR = path.join(__dirname, 'data');
 const PRODUCTS_FILE = path.join(DATA_DIR, 'products.json');
+
+// ------------------------------------------------------------------
+// Supabase client for persistent product storage.
+// On Vercel the filesystem is read-only/ephemeral, so products must be
+// stored in an external database that all serverless instances share.
+// ------------------------------------------------------------------
+const SUPABASE_URL = process.env.SUPABASE_URL || 'https://djhtwpckoeiscjcstupo.supabase.co';
+const SUPABASE_KEY = process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRqaHR3cGNrb2Vpc2NqY3N0dXBvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYyMDQ5NjEsImV4cCI6MjEwMTc4MDk2MX0.tFucp7xIrMysokxJ_yt7XGzV8BzWczyOMuSu4j_bGIs';
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
@@ -119,41 +129,88 @@ ensureDataFile(MESSAGES_FILE, []);
 ensureDataFile(PRODUCTS_FILE, DEFAULT_PRODUCTS);
 
 function readProducts() {
-  try {
-    if (!fs.existsSync(PRODUCTS_FILE)) {
-      fs.writeFileSync(PRODUCTS_FILE, JSON.stringify(DEFAULT_PRODUCTS, null, 2));
-      return DEFAULT_PRODUCTS;
-    }
-    const data = fs.readFileSync(PRODUCTS_FILE, 'utf-8');
-    return JSON.parse(data);
-  } catch (err) {
-    console.error('Error reading products:', err);
-    return DEFAULT_PRODUCTS;
-  }
+  // Try Supabase first (persistent, works on Vercel).
+  // Fall back to the local file only if Supabase is unavailable.
+  return new Promise((resolve, reject) => {
+    supabase
+      .from('products')
+      .select('*')
+      .order('id', { ascending: true })
+      .then(({ data, error }) => {
+        if (error) {
+          console.error('Supabase read error:', error.message);
+          // Fall back to local file
+          try {
+            if (!fs.existsSync(PRODUCTS_FILE)) {
+              fs.writeFileSync(PRODUCTS_FILE, JSON.stringify(DEFAULT_PRODUCTS, null, 2));
+              return resolve(DEFAULT_PRODUCTS);
+            }
+            const raw = fs.readFileSync(PRODUCTS_FILE, 'utf-8');
+            return resolve(JSON.parse(raw));
+          } catch (err) {
+            console.error('Error reading products from file:', err);
+            return resolve(DEFAULT_PRODUCTS);
+          }
+        }
+        // Normalize Supabase rows (sizes stored as JSONB array)
+        const products = (data || []).map(p => ({
+          ...p,
+          sizes: Array.isArray(p.sizes) ? p.sizes.map(String) :
+                 (p.sizes && typeof p.sizes === 'object') ? Object.values(p.sizes).map(String) : []
+        }));
+        resolve(products);
+      })
+      .catch(err => {
+        console.error('Supabase query error:', err.message);
+        // Fall back to local file
+        try {
+          if (fs.existsSync(PRODUCTS_FILE)) {
+            const raw = fs.readFileSync(PRODUCTS_FILE, 'utf-8');
+            return resolve(JSON.parse(raw));
+          }
+        } catch (e) {}
+        resolve(DEFAULT_PRODUCTS);
+      });
+  });
 }
 
-function writeProducts(products) {
-  const json = JSON.stringify(products, null, 2);
-  const tmpFile = PRODUCTS_FILE + '.tmp';
-  const attempts = [1, 2, 3];
-  for (const n of attempts) {
-    try {
-      // Atomic write: write to a temp file then rename over the target.
-      // This avoids corrupting the file on OneDrive / synced folders and
-      // prevents partial writes from leaving the JSON broken.
-      fs.writeFileSync(tmpFile, json, 'utf-8');
-      fs.renameSync(tmpFile, PRODUCTS_FILE);
-      return true;
-    } catch (err) {
-      console.error(`Error writing products (attempt ${n}):`, err.message);
-      // Small delay before retrying (OneDrive/indexing locks can be transient).
-      if (n < attempts.length) {
-        const until = Date.now() + 120;
-        while (Date.now() < until) {}
+async function writeProducts(products) {
+  // Persist to Supabase. We upsert the whole array.
+  try {
+    const rows = products.map(p => ({
+      id: p.id,
+      name: p.name,
+      category: p.category,
+      price: p.price,
+      description: p.description,
+      stock: p.stock,
+      sizes: p.sizes || [],
+      image: p.image || null,
+      emoji: p.emoji || '👟',
+      createdAt: p.createdAt || new Date().toISOString(),
+      updatedAt: p.updatedAt || new Date().toISOString()
+    }));
+
+    const { error } = await supabase
+      .from('products')
+      .upsert(rows, { onConflict: 'id', ignoreDuplicates: false });
+
+    if (error) {
+      console.error('Supabase write error:', error.message);
+      // Fall back to local file write (works in local dev)
+      try {
+        fs.writeFileSync(PRODUCTS_FILE, JSON.stringify(products, null, 2));
+        return true;
+      } catch (e) {
+        console.error('Local file fallback write failed:', e.message);
+        return false;
       }
     }
+    return true;
+  } catch (err) {
+    console.error('writeProducts error:', err.message);
+    return false;
   }
-  return false;
 }
 
 function authenticateToken(req, res, next) {
@@ -209,9 +266,9 @@ app.post('/api/auth/verify', authenticateToken, (req, res) => {
   res.json({ valid: true, user: req.user });
 });
 
-app.get('/api/products', (req, res) => {
+app.get('/api/products', async (req, res) => {
   try {
-    const products = readProducts();
+    const products = await readProducts();
     res.json(products);
   } catch (err) {
     console.error('Get products error:', err);
@@ -219,9 +276,9 @@ app.get('/api/products', (req, res) => {
   }
 });
 
-app.get('/api/products/:id', (req, res) => {
+app.get('/api/products/:id', async (req, res) => {
   try {
-    const products = readProducts();
+    const products = await readProducts();
     const product = products.find(p => p.id === parseInt(req.params.id));
     
     if (!product) {
@@ -235,7 +292,7 @@ app.get('/api/products/:id', (req, res) => {
   }
 });
 
-app.post('/api/products', authenticateToken, (req, res) => {
+app.post('/api/products', authenticateToken, async (req, res) => {
   try {
     const { name, category, price, description, stock, sizes, image, emoji } = req.body;
 
@@ -243,7 +300,7 @@ app.post('/api/products', authenticateToken, (req, res) => {
       return res.status(400).json({ error: 'All required fields must be filled' });
     }
 
-    const products = readProducts();
+    const products = await readProducts();
     const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
 
     const newProduct = {
@@ -261,7 +318,7 @@ app.post('/api/products', authenticateToken, (req, res) => {
 
     products.push(newProduct);
     
-    if (writeProducts(products)) {
+    if (await writeProducts(products)) {
       res.status(201).json({ success: true, product: newProduct });
     } else {
       res.status(500).json({ error: 'Failed to save product' });
@@ -272,12 +329,12 @@ app.post('/api/products', authenticateToken, (req, res) => {
   }
 });
 
-app.put('/api/products/:id', authenticateToken, (req, res) => {
+app.put('/api/products/:id', authenticateToken, async (req, res) => {
   try {
     const productId = parseInt(req.params.id);
     const { name, category, price, description, stock, sizes, image, emoji } = req.body;
 
-    const products = readProducts();
+    const products = await readProducts();
     const index = products.findIndex(p => p.id === productId);
 
     if (index === -1) {
@@ -294,10 +351,10 @@ app.put('/api/products/:id', authenticateToken, (req, res) => {
     if (emoji !== undefined) products[index].emoji = emoji;
     products[index].updatedAt = new Date().toISOString();
 
-    if (writeProducts(products)) {
+    if (await writeProducts(products)) {
       res.json({ success: true, product: products[index] });
     } else {
-      res.status(500).json({ error: 'Failed to update product. The data file could not be written (possibly locked by OneDrive). Please try again.' });
+      res.status(500).json({ error: 'Failed to update product. The database could not be written. Please try again.' });
     }
   } catch (err) {
     console.error('Update product error:', err);
@@ -305,17 +362,17 @@ app.put('/api/products/:id', authenticateToken, (req, res) => {
   }
 });
 
-app.delete('/api/products/:id', authenticateToken, (req, res) => {
+app.delete('/api/products/:id', authenticateToken, async (req, res) => {
   try {
     const productId = parseInt(req.params.id);
-    const products = readProducts();
+    const products = await readProducts();
     const filtered = products.filter(p => p.id !== productId);
 
     if (filtered.length === products.length) {
       return res.status(404).json({ error: 'Product not found' });
     }
 
-    if (writeProducts(filtered)) {
+    if (await writeProducts(filtered)) {
       res.json({ success: true, message: 'Product deleted successfully' });
     } else {
       res.status(500).json({ error: 'Failed to delete product' });
@@ -430,7 +487,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'index.html'));
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log('╔═══════════════════════════════════════════════════════╗');
   console.log('║           ✨  EL DAWLY LUXURY SHOES  ✨               ║');
   console.log('╠═══════════════════════════════════════════════════════╣');
@@ -439,4 +496,21 @@ app.listen(PORT, () => {
   console.log('║  🔐  Admin Username: admin                            ║');
   console.log('║  🔐  Admin Password: admin123                         ║');
   console.log('╚═══════════════════════════════════════════════════════╝');
+
+  // Seed Supabase with default products if the table is empty.
+  // This ensures the store always has data on a fresh database.
+  try {
+    const { count, error } = await supabase
+      .from('products')
+      .select('id', { count: 'exact', head: true });
+    if (!error && count === 0) {
+      console.log('Seeding Supabase products table with defaults...');
+      await writeProducts(DEFAULT_PRODUCTS);
+      console.log('Supabase seeded successfully.');
+    } else if (error) {
+      console.warn('Supabase seed check failed:', error.message);
+    }
+  } catch (e) {
+    console.warn('Supabase seed error:', e.message);
+  }
 });
