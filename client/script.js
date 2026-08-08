@@ -1028,21 +1028,65 @@ async function handleProductSubmit(e) {
             emoji
         };
 
+        let savedToServer = false;
+
         if (editingProductId) {
-            await apiRequest(`/products/${editingProductId}`, {
-                method: 'PUT',
-                body: JSON.stringify(payload)
-            });
-            showToast('Piece updated successfully in the collection.', 'success');
+            try {
+                await apiRequest(`/products/${editingProductId}`, {
+                    method: 'PUT',
+                    body: JSON.stringify(payload)
+                });
+                savedToServer = true;
+            } catch (err) {
+                // Server unreachable or static hosting — still apply the edit
+                // to the in-memory catalog so the change is reflected now.
+                console.warn('Server update failed, applying locally:', err);
+            }
         } else {
-            await apiRequest('/products', {
-                method: 'POST',
-                body: JSON.stringify(payload)
-            });
-            showToast('New masterpiece introduced to the collection.', 'success');
+            try {
+                await apiRequest('/products', {
+                    method: 'POST',
+                    body: JSON.stringify(payload)
+                });
+                savedToServer = true;
+            } catch (err) {
+                // Server unreachable or static hosting — add locally only.
+                console.warn('Server create failed, applying locally:', err);
+            }
         }
 
+        // Apply/refresh the local catalog regardless of server availability.
         await refreshProducts();
+
+        if (!savedToServer) {
+            // When the server is unreachable, the fallback in refreshProducts()
+            // loads STATIC_PRODUCTS, which won't contain this edit. Apply the
+            // change directly to the in-memory catalog so it is visible now.
+            if (editingProductId) {
+                const idx = productsCache.findIndex(p => p.id === editingProductId);
+                if (idx !== -1) {
+                    productsCache[idx] = { ...productsCache[idx], ...payload, id: editingProductId };
+                } else {
+                    productsCache.push({ id: editingProductId, ...payload, createdAt: new Date().toISOString() });
+                }
+            } else {
+                const newId = productsCache.length > 0
+                    ? Math.max(...productsCache.map(p => p.id)) + 1
+                    : 1;
+                productsCache.push({ id: newId, ...payload, createdAt: new Date().toISOString() });
+            }
+        }
+
+        if (savedToServer) {
+            showToast(editingProductId
+                ? 'Piece updated successfully in the collection.'
+                : 'New masterpiece introduced to the collection.', 'success');
+        } else {
+            showToast(editingProductId
+                ? 'Piece updated for this session. The server was unreachable, so changes may not persist after a refresh.'
+                : 'Piece added for this session. The server was unreachable, so changes may not persist after a refresh.', 'warning');
+        }
+
         closeModal();
         render();
     } catch (err) {

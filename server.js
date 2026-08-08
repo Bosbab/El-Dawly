@@ -133,13 +133,27 @@ function readProducts() {
 }
 
 function writeProducts(products) {
-  try {
-    fs.writeFileSync(PRODUCTS_FILE, JSON.stringify(products, null, 2));
-    return true;
-  } catch (err) {
-    console.error('Error writing products:', err);
-    return false;
+  const json = JSON.stringify(products, null, 2);
+  const tmpFile = PRODUCTS_FILE + '.tmp';
+  const attempts = [1, 2, 3];
+  for (const n of attempts) {
+    try {
+      // Atomic write: write to a temp file then rename over the target.
+      // This avoids corrupting the file on OneDrive / synced folders and
+      // prevents partial writes from leaving the JSON broken.
+      fs.writeFileSync(tmpFile, json, 'utf-8');
+      fs.renameSync(tmpFile, PRODUCTS_FILE);
+      return true;
+    } catch (err) {
+      console.error(`Error writing products (attempt ${n}):`, err.message);
+      // Small delay before retrying (OneDrive/indexing locks can be transient).
+      if (n < attempts.length) {
+        const until = Date.now() + 120;
+        while (Date.now() < until) {}
+      }
+    }
   }
+  return false;
 }
 
 function authenticateToken(req, res, next) {
@@ -283,11 +297,11 @@ app.put('/api/products/:id', authenticateToken, (req, res) => {
     if (writeProducts(products)) {
       res.json({ success: true, product: products[index] });
     } else {
-      res.status(500).json({ error: 'Failed to update product' });
+      res.status(500).json({ error: 'Failed to update product. The data file could not be written (possibly locked by OneDrive). Please try again.' });
     }
   } catch (err) {
     console.error('Update product error:', err);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: 'Update failed: ' + (err.message || 'Internal server error') });
   }
 });
 

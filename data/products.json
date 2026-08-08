@@ -3,7 +3,7 @@
     "id": 1,
     "name": "Shoe 01 - Premium Collection",
     "category": "Casual",
-    "price": 9999,
+    "price": 600,
     "description": "Premium casual footwear from EL Dawly Collection. Elegant design with superior comfort. PLEASE EDIT: Update the name, price, description, category, sizes and stock for this shoe via the Admin Panel!",
     "stock": 10,
     "sizes": [
@@ -16,7 +16,7 @@
     "image": null,
     "emoji": "👟",
     "createdAt": "2026-08-07T17:10:08.275Z",
-    "updatedAt": "2026-08-08T17:14:01.782Z"
+    "updatedAt": "2026-08-08T17:37:17.288Z"
   },
   {
     "id": 2,
