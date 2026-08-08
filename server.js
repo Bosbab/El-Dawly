@@ -10,10 +10,10 @@ const { createClient } = require('@supabase/supabase-js');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET || 'eldawly-luxury-footwear-secret-key-2026';
-const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'admin';
+const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'AL DAWLY';
 const ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH
   ? process.env.ADMIN_PASSWORD_HASH
-  : bcrypt.hashSync(process.env.ADMIN_PASSWORD || 'admin123', 10);
+  : bcrypt.hashSync(process.env.ADMIN_PASSWORD || '143500', 10);
 
 const DATA_DIR = path.join(__dirname, 'data');
 const PRODUCTS_FILE = path.join(DATA_DIR, 'products.json');
@@ -521,8 +521,8 @@ if (!process.env.VERCEL) {
     console.log('╠═══════════════════════════════════════════════════════╣');
     console.log(`║  🖥️  Server running: http://localhost:${PORT}            ║`);
     console.log(`║  📦  Environment: ${process.env.NODE_ENV || 'development'}`);
-    console.log('║  🔐  Admin Username: admin                            ║');
-    console.log('║  🔐  Admin Password: admin123                         ║');
+    console.log('║  🔐  Admin login configured via env                    ║');
+    console.log('║                                                       ║');
     console.log('╚═══════════════════════════════════════════════════════╝');
     await seedSupabaseIfEmpty();
   });

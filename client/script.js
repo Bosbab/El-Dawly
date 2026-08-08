@@ -648,17 +648,12 @@ function renderAdminLogin() {
                 <form onsubmit="handleAdminLogin(event)">
                     <div class="form-group">
                         <label>Private ID</label>
-                        <input type="text" id="adminUsername" required placeholder="Administrator ID" value="admin">
+                        <input type="text" id="adminUsername" required placeholder="Administrator ID" autocomplete="username">
                     </div>
                     <div class="form-group">
                         <label>Secure Key</label>
-                        <input type="password" id="adminPassword" required placeholder="••••••••">
+                        <input type="password" id="adminPassword" required placeholder="••••••••" autocomplete="current-password">
                         <div class="form-error" id="loginError" style="display: none;"></div>
-                    </div>
-                    <div style="background: var(--black-3); padding: 1rem; margin-bottom: 1.5rem; border: 1px solid var(--black-4); font-size: 0.85rem; line-height: 1.8;">
-                        <strong style="color: var(--gold);">💡 Default Credentials:</strong><br>
-                        Private ID: <code style="background: var(--black-4); padding: 2px 6px;">admin</code><br>
-                        Secure Key: <code style="background: var(--black-4); padding: 2px 6px;">admin123</code>
                     </div>
                     <button type="submit" id="loginBtn" class="btn btn-lg" style="width: 100%;">Enter Portal →</button>
                 </form>
