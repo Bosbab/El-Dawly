@@ -381,11 +381,12 @@ function renderProductsGrid(products) {
 return `
         <div class="products-grid">
             ${products.map(product => {
+                const spinImage = FEATURED_SHOE_IDS.includes(product.id);
                 return `
                 <div class="product-card" onclick="viewProduct(${product.id})">
-                    <div class="product-image">
+                    <div class="product-image ${spinImage ? 'spin-image-wrap' : ''}">
                         ${product.image 
-                            ? `<img src="${product.image}" alt="${product.name}" loading="lazy">`
+                            ? `<img src="${product.image}" alt="${product.name}" loading="lazy" class="${spinImage ? 'spin-image' : ''}">`
                             : product.emoji || '👟'
                         }
                         ${product.stock === 0 ? `<span class="product-badge sold-out">Sold Out</span>` : ''}
